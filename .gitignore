@@ -1,0 +1,10 @@
+node_modules/
+.env
+*.log
+
+# Heavy build inputs / intermediates — regenerate with build_*.mjs (see README)
+data/
+
+# macOS
+.DS_Store
+**/.DS_Store

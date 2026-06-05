@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>OBSIDIAN</title>
+  <link rel="icon" href="obsidian-logo.jpg" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <script>if (window.innerWidth > 700) document.body.classList.add("nav-open");</script>
+  <div id="map"></div>
+
+  <button id="menuToggle" aria-label="Show controls" aria-expanded="false">
+    <img src="obsidian-logo.jpg" alt="" />
+  </button>
+  <div id="scrim"></div>
+
+  <aside id="panel">
+    <header class="brand">
+      <span class="mark" role="img" aria-label="OBSIDIAN"></span>
+      <div class="title"><h1>OBSIDIAN</h1></div>
+      <button id="panelCollapse" aria-label="Hide panel" title="Hide panel">‹</button>
+    </header>
+    <p class="sub">Global OSINT · live military picture <span class="src" id="src-tag">OpenSky</span></p>
+
+    <section class="group" style="--i:1">
+      <p class="label">Layers</p>
+      <label class="row">
+        <span class="dot air"></span>
+        <span class="rt">Aircraft</span>
+        <span class="ct" id="c-aircraft">—</span>
+        <input type="checkbox" id="t-aircraft" checked /><span class="sw"></span>
+      </label>
+      <label class="row">
+        <span class="dot base"></span>
+        <span class="rt">Bases</span>
+        <span class="ct" id="c-bases">—</span>
+        <input type="checkbox" id="t-bases" checked /><span class="sw"></span>
+      </label>
+      <label class="row">
+        <span class="dot ship"></span>
+        <span class="rt">Vessels <i class="mode" id="ships-mode"></i></span>
+        <span class="ct" id="c-ships">—</span>
+        <input type="checkbox" id="t-ships" /><span class="sw"></span>
+      </label>
+      <label class="row">
+        <span class="dot foreign"></span>
+        <span class="rt">Foreign bases</span>
+        <span class="ct" id="c-foreign">—</span>
+        <input type="checkbox" id="t-foreign" checked /><span class="sw"></span>
+      </label>
+      <label class="row">
+        <span class="dot event"></span>
+        <span class="rt">Live events</span>
+        <span class="ct" id="c-events">—</span>
+        <input type="checkbox" id="t-events" /><span class="sw"></span>
+      </label>
+    </section>
+
+    <section class="group" style="--i:2">
+      <p class="label">Bases</p>
+      <div class="select">
+        <select id="country-filter"><option value="ALL">All countries</option></select>
+      </div>
+      <div class="stars">
+        <span class="stxt">Min rating</span>
+        <button class="star" data-imp="1">★</button>
+        <button class="star" data-imp="2">★</button>
+        <button class="star" data-imp="3">★</button>
+        <button class="star" data-imp="4">★</button>
+        <button class="star" data-imp="5">★</button>
+      </div>
+    </section>
+
+    <section class="group" style="--i:3">
+      <p class="label">Basemap</p>
+      <div class="seg">
+        <button class="bm on" data-mode="tactical">Tactical</button>
+        <button class="bm" data-mode="satellite">Satellite</button>
+        <button class="bm" data-mode="s2">Sentinel</button>
+        <button class="bm" data-mode="terrain">Terrain</button>
+      </div>
+    </section>
+
+    <section class="group" style="--i:4">
+      <p class="label">Overlays</p>
+      <label class="row">
+        <span class="rt">Contact trails</span>
+        <input type="checkbox" id="trails" /><span class="sw"></span>
+      </label>
+      <label class="row">
+        <span class="rt">Orbital rotation</span>
+        <input type="checkbox" id="spin" /><span class="sw"></span>
+      </label>
+      <label class="row">
+        <span class="rt">Measure distance</span>
+        <input type="checkbox" id="measure" /><span class="sw"></span>
+      </label>
+      <label class="row">
+        <span class="rt">Range rings</span>
+        <input type="checkbox" id="t-rings" /><span class="sw"></span>
+      </label>
+    </section>
+
+    <button id="export" style="--i:5">Export view</button>
+    <p id="status" class="status" style="--i:5"></p>
+
+    <div id="ships-note" hidden>
+      <b>Sample fleet.</b> Illustrative vessels — not live positions. Add a free
+      <a href="https://aisstream.io" target="_blank" rel="noopener">aisstream.io</a> key for real-time AIS.
+    </div>
+
+    <footer class="foot" style="--i:6">Subsurface assets non-trackable · most UAVs silent · combatants run AIS dark</footer>
+  </aside>
+
+  <aside id="telemetry">
+    <div><span>UTC</span><b id="tl-clock">--:--:--</b></div>
+    <div class="t-cursor"><span>Cursor</span><b id="tl-coord">—</b></div>
+    <div><span>Zoom</span><b id="tl-zoom">1.7</b></div>
+    <div><span>Contacts</span><b id="tl-contacts">0000</b></div>
+  </aside>
+
+  <aside id="airlegend" hidden></aside>
+
+  <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

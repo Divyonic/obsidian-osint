@@ -1,0 +1,16 @@
+{
+  "name": "obsidian-osint",
+  "version": "0.4.0",
+  "description": "OBSIDIAN — real-time OSINT military common-operating-picture on a 3D globe: military aircraft (ADS-B), bases (OpenStreetMap), live conflict events (GDELT), and vessels (AIS), aggregated from publicly broadcast data.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.18.0",
+    "dotenv": "^16.4.5"
+  }
+}
